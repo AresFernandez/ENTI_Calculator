@@ -82,8 +82,6 @@ class CalculatorViewModel: CalculatorViewModelProtocol,
             self.operation.firstOperator = value
             self.operation.operation = operation
         }
-        
-        self.display = "0"
     }
     
     func calculateResult(for values: Calculation) -> Int? {
