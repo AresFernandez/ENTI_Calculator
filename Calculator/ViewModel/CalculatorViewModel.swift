@@ -40,11 +40,6 @@ class CalculatorViewModel: CalculatorViewModelProtocol,
     
     public func addDigit(_ digit: String) {
         self.buttonText = "C"
-        if self.operation.operation != .none && self.operation.secondOperator == nil {
-            self.operation.secondOperator = 0
-            self.display = digit
-            return
-        }
         guard self.display != "0" else {
             self.display = digit
             return
