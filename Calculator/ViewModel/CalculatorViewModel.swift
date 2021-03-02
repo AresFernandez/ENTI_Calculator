@@ -36,6 +36,7 @@ class CalculatorViewModel: CalculatorViewModelProtocol,
                                                      secondOperator: 0,
                                                      operation: .none)
     private var operationFinished: Bool = false
+    private var resetDisplay: Bool = false
     
     public func addDigit(_ digit: String) {
         self.buttonText = "C"
@@ -52,8 +53,14 @@ class CalculatorViewModel: CalculatorViewModelProtocol,
         guard self.display.count < 6 else {
             return
         }
+        if resetDisplay {
+            self.display = digit;
+            resetDisplay = false;
+        }
+        else{
+            self.display += digit;
+        }
         
-        self.display += digit
     }
     
     public func resetOperands() {
@@ -82,6 +89,7 @@ class CalculatorViewModel: CalculatorViewModelProtocol,
             self.operation.firstOperator = value
             self.operation.operation = operation
         }
+        resetDisplay = true;
     }
     
     func calculateResult(for values: Calculation) -> Int? {
